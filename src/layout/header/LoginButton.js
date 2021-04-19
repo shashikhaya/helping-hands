@@ -1,20 +1,10 @@
-import styled from 'styled-components'
-
-const LoginButton = ({text}) => {
+const LoginButton = ({ text }) => {
     return (
-        <Button>
+        <button className="btn btn-purple">
             {/* Later we will make it dynamic, I.e. login/logout */}
             { text }           
-        </Button>
+        </button>
     )
 }
 
 export default LoginButton
-
-
-const Button = styled.button`
-background: #6C5CE7;
-border: 1px solid #6C5CE7;
-box-sizing: border-box;
-border-radius:25%;
-`

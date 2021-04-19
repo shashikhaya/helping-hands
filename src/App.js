@@ -5,7 +5,7 @@ import Registration from './layout/body/Registration'
 
 function App() {
   return (
-    <div className="App">
+    <div className="flex flex-col h-screen">
       <Header />
       <MissionStatement />
       <SupportCases />
