@@ -8,11 +8,13 @@ const Header = () => {
     const loggedIn = false
 
     return (
-        <Div>
-            <Title />
-            <NavBar />
-            <LoginButton text={loggedIn? "Logout": "Login"} />
-        </Div>
+        <header>
+            <Div>
+                <Title />
+                <NavBar />
+                <LoginButton text={loggedIn? "Logout": "Login"} />
+            </Div>  
+        </header>
     )
 }
 export default Header

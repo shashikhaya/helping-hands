@@ -1,11 +1,10 @@
 import Header from './layout/header/Header'
-
+import MissionStatement from './layout/body/MissionStatement'
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Header />
-      </header>
+      <Header />
+      <MissionStatement />
     </div>
   );
 }
