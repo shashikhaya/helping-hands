@@ -5,7 +5,7 @@ const MissionStatement = () => {
         <div>
             <h1>Our mission statement</h1>
             <h2>Subtitle: Make the world a better place, one hand at a time ;)</h2>
-            <img src={Img} alt="zains piccy"/>
+            <img src={Img} alt="globe"/>
         </div>
     )
 }

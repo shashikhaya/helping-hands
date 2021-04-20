@@ -1,24 +1,22 @@
 import NavBar from './NavBar'
 import LoginButton from './LoginButton'
-import Title from './Title'
-
-import styled from 'styled-components'
+import NavbarBrand from './NavbarBrand'
 
 const Header = () => {
     const loggedIn = false
 
     return (
-        <header>
-            <Div>
-                <Title />
-                <NavBar />
-                <LoginButton text={loggedIn? "Logout": "Login"} />
-            </Div>  
-        </header>
+        <>
+            <nav className="navbar">
+                <NavbarBrand />
+                <ul>
+                    <li>
+                        <LoginButton text={loggedIn ? "Logout" : "Login"} />
+                    </li>
+                </ul>
+            </nav>
+        </>
     )
 }
-export default Header
 
-const Div = styled.div`
-    display:flex;
-`
+export default Header;
