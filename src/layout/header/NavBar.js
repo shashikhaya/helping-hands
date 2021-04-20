@@ -1,19 +1,28 @@
-import styled from 'styled-components'
-
-const NavBar = () => {
+const Navbar = () => {
     return (
-        <nav>
-            <List>
-                <li>Home</li>
-                <li>Tasks</li>
-            </List>  
-        </nav>
+        <ul className="ml-10 flex items-baseline space-x-4">
+            <li>
+                <a href="/" className="navlink">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="/" className="navlink">
+                    Tasks
+                </a>
+            </li>
+            <li>
+                <a href="/" className="navlink">
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="/" className="navlink">
+                    Profile
+                </a>
+            </li>
+        </ul>
     )
 }
 
-export default NavBar
-
-const List = styled.ul`
-list-style-type:none;
-display:flex;
-`
+export default Navbar;

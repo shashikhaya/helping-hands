@@ -22,6 +22,10 @@
         @apply text-xl no-underline font-bold;
     }
 
+    .navlink {
+        @apply text-gray-300  hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium;
+    }
+
     .form-control {
         @apply w-full px-3 py-2 border-2 rounded shadow leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
     }

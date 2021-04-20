@@ -1,20 +1,24 @@
-import NavBar from './NavBar'
-import LoginButton from './LoginButton'
-import NavbarBrand from './NavbarBrand'
+import { useState } from 'react';
+import Navbar from './Navbar';
+import LoginButton from './LoginButton';
+import NavbarBrand from './NavbarBrand';
 
 const Header = () => {
-    const loggedIn = false
+    // this state will need to move higher up eventually
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    const loginLogout = () => {
+        // more logic
+        setLoggedIn(!loggedIn);
+    }
 
     return (
         <>
-            <nav className="navbar">
+            <div className="flex items-center h-16">
                 <NavbarBrand />
-                <ul>
-                    <li>
-                        <LoginButton text={loggedIn ? "Logout" : "Login"} />
-                    </li>
-                </ul>
-            </nav>
+                <Navbar />
+                <LoginButton text={loggedIn ? "Logout" : "Login"} loginLogout={loginLogout} />
+            </div>
         </>
     )
 }
