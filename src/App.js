@@ -6,7 +6,9 @@ function App() {
   return (
     <div className="flex flex-col h-screen">
       <Header />
-      <LandingInfo />
+      <div className="container mx-auto mb-auto px-8">
+        <LandingInfo />
+      </div>
       <Footer />
     </div>
   );
