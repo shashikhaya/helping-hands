@@ -1,7 +1,4 @@
 import Header from './layout/header/Header'
-import MissionStatement from './layout/body/MissionStatement'
-import SupportCases from './layout/body/SupportCases' 
-import Registration from './layout/body/Registration'
 import Footer from './layout/footer/Footer'
 import LandingInfo from './layout/body/LandingInfo'
 import { AccountBox } from "./components/accountBox"
@@ -27,9 +24,6 @@ function App() {
         <button onClick={() => setShow(true) }>Show Modal</button>
         <AccountBox onClose={() => setShow(false)} show={show} />
       </AppContainer>
-      <MissionStatement />
-      <SupportCases />
-      <Registration />
       <div className="container mx-auto mb-auto px-8">
         <LandingInfo />
       </div>
