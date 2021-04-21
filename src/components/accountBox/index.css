@@ -36,4 +36,13 @@
   .modal.exit .modal-content {
     transform: translateY(-200px);
   }
+
+  button:hover{
+    opacity: 70%;
+  }
+
+  button:focus{
+    background-color: rgb(109,40,217);
+    color: #fff;
+  }
   
