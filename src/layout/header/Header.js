@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Navbar from './Navbar';
+import Navbar from './NavBar';
 import LoginButton from './LoginButton';
 import NavbarBrand from './NavbarBrand';
 
