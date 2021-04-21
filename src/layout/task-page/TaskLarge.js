@@ -1,20 +1,26 @@
 import Map from "./Map";
 // import DirectionsMap from "./DirectionsMap";
 
-const TaskLarge = () => {
+const TaskLarge = ({ id, title, description, status, type, location, duration, covidInfo }) => {
+    const coordinates= { lat:52.4397, lng: -1.87 }
+    
     return (
-        <div>
-            <h3><span>Task title</span><span>Task type</span></h3>
-            <div>
-                <p>Posted date</p>
-                <p>Duration: 1hr</p>
-                <p>google map api key: AIzaSyDD9SFkGe-a_3ZltYX8xp7jC3B3jfqHeBo</p>
+        <div class="rounded border border-gray overflow-hidden p-4 mb-4 f">
+            <div class="flex justify-between">
+                <div>
+                    <h1 class="text-gray-900 font-bold text-2xl">
+                        <span class="text-purple-700">title</span>
+                        <span class="text-gray-400">&nbsp;/ type </span>
+                    </h1>
+                    <p class="mt-2 text-base">description</p>
+                </div>
+                <div class="float-right mb-1">
+                    <p class="mt-2 font-bold text-gray-400 text-xl">status</p>
+                    <p class="mt-2 text-lg">duration</p>
+                </div>
             </div>
-            <p>Task description</p>
-            <Map />
-            <p>Location</p>
-            <time datetime="2017-02-14">Time</time>
-            <button>Lend a hand</button>  
+            <Map coords={coordinates} />
+            <button className="btn btn-purple float-right">Lend a hand</button>  
         </div>
     )
 }

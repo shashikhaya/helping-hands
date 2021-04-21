@@ -5,6 +5,7 @@ import LandingInfo from './layout/body/LandingInfo';
 import Footer from './layout/footer/Footer';
 import TaskList from './tasks/TaskList';
 import TaskDetail from './tasks/TaskDetail';
+import TaskPage from './layout/task-page/TaskPage';
 import { AccountBox } from "./components/accountBox"
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
               <TaskList />
             </Route>
             <Route path="/task/:id">
-              <TaskDetail />
+              <TaskPage />
             </Route>
           </Switch>
         </div>

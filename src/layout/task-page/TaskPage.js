@@ -1,12 +1,18 @@
 import TaskLarge from './TaskLarge'
 import TaskSmall from './TaskSmall'
 
+import { Link } from 'react-router-dom';
+
 const TaskPage = () => {
     return (
-        <div>
-            <button class="bg-purple-700 rounded-xl p-6 md:p-0 ">Back</button>
-            <TaskLarge />
+        <div  className="space-y-5" >
             <div>
+                <Link to={{ pathname: '/tasks/'}} className="btn btn-purple">
+                    Back to task list
+                </Link>
+            </div>
+            <TaskLarge />
+            <div className="flex space-x-3" >
                 <TaskSmall />
                 <TaskSmall />
                 <TaskSmall />

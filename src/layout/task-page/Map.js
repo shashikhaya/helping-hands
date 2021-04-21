@@ -6,9 +6,9 @@ const containerStyle = {
   height: '400px'
 };
 
-const center = { lat:52.4397, lng: -1.87 };
+const center = { lat:53.4397, lng: -1.87 };
 
-function MyComponent() {
+function MyComponent({coords}) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: "AIzaSyDD9SFkGe-a_3ZltYX8xp7jC3B3jfqHeBo"
@@ -29,7 +29,7 @@ function MyComponent() {
   return isLoaded ? (
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
+        center={coords}
         zoom={6}
         onLoad={onLoad}
         onUnmount={onUnmount}

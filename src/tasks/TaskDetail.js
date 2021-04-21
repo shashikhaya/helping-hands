@@ -1,12 +1,14 @@
 import { useParams } from "react-router-dom"
 
+import TaskLarge from '../layout/task-page/TaskLarge'
+
 const TaskDetail = () => {
     const { id } = useParams()
     // get task somehow
     
     return (
         <div>
-            <h1>task: { id }</h1>
+            <TaskLarge />
         </div>
     )
 }
