@@ -21,6 +21,16 @@ export function SignupForm(props) {
         <Input type="text" placeholder="Contact Info" />
         <Input type="password" placeholder="Password" />
         <Input type="password" placeholder="Confirm Password" />
+        
+        <div class="flex items-center">
+            <button type="button" class="w-full border-r text-base font-medium rounded-l-md text-black bg-gray-100 px-4 py-2">
+                User
+            </button>
+            <button type="button" class="w-full border-l text-base font-medium rounded-r-md text-black bg-gray-100 px-4 py-2">
+                Helper
+            </button>
+        </div>
+
       </FormContainer>
       <Marginer direction="vertical" margin={10} />
       <SubmitButton type="submit">Register</SubmitButton>
