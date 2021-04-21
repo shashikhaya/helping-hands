@@ -38,7 +38,7 @@ const BackDrop = styled(motion.div)`
   flex-direction: column;
   top: -290px;
   left: -70px;
-  background: rgb(108, 92, 231);
+  background: rgb(109,40,217);
 `;
 
 const HeaderContainer = styled.div`

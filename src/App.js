@@ -14,16 +14,34 @@ const AppContainer = styled.div`
   justify-content: center;
 `;
 
+const LoginButton = styled.button`
+width: 100%;
+padding: 11px 40%;
+color: #fff;
+font-size: 15px;
+font-weight: 600;
+border-radius: 100px 100px 100px 100px;
+cursor: pointer;
+transition: all, 240ms ease-in-out;
+background: rgb(109,40,217);
+
+&:hover {
+  opacity: 70%;
+}
+`;
+
 function App() {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
+
+  const handleClick = () => {
+    setShow(!show);
+  }
   
   return (
     <div className="flex flex-col h-screen">
-      <Header />
-      <AppContainer>
-        <button onClick={() => setShow(true) }>Show Modal</button>
-        <AccountBox onClose={() => setShow(false)} show={show} />
-      </AppContainer>
+      
+      <Header handleClick={handleClick}/>
+      <AccountBox onClose={() => setShow(false)} show={show} />
       <div className="container mx-auto mb-auto px-8">
         <LandingInfo />
       </div>
