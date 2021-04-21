@@ -3,9 +3,10 @@ import MissionStatement from './layout/body/MissionStatement'
 import SupportCases from './layout/body/SupportCases' 
 import Registration from './layout/body/Registration'
 import Footer from './layout/footer/Footer'
-import { AccountBox } from "./components/accountBox";
+import LandingInfo from './layout/body/LandingInfo'
+import { AccountBox } from "./components/accountBox"
 import { useState, useEffect } from 'react'
-import styled from "styled-components";
+import styled from "styled-components"
 
 const AppContainer = styled.div`
   width: 100%;
@@ -29,6 +30,9 @@ function App() {
       <MissionStatement />
       <SupportCases />
       <Registration />
+      <div className="container mx-auto mb-auto px-8">
+        <LandingInfo />
+      </div>
       <Footer />
     </div>
   );

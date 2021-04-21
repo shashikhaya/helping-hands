@@ -1,28 +1,39 @@
-import FooterLinks from './FooterLinks'
-import TwitterImg from './social-link-imgs/Twitter.svg'
-import FacebookImg from './social-link-imgs/Facebook.svg'
-import InstagrameImg from './social-link-imgs/Instagram.svg'
-import MediumImg from './social-link-imgs/Medium.svg'
-import LinkedInImg from './social-link-imgs/Linkedin.svg'
+import LogoImg from './handshake.svg'
 
 const Footer = () => {
     return (
-        <div>
-            <FooterLinks link1="about" link2="blog" link3="support"/>
-            <p>Logo</p>
-            <FooterLinks link1="about" link2="blog" link3="support"/>
-            <hr/>
-            <ul>
-                <li><img src={TwitterImg} alt="twitter logo" className="fill-current text-purple-700 w-5 h-5" /></li>
-                <li><img src={FacebookImg} alt="instagram logo" className="purple-700 w-5 h-5" /></li>
-                <li><img src={MediumImg} alt="medium logo" className="purple-700 w-5 h-5" /></li>
-                <li><img src={InstagrameImg} alt="instagram logo" className="purple-700 w-5 h-5" /></li>
-                <li><img src={LinkedInImg} alt="linkedin logo" className="purple-700 w-5 h-5" /></li>
-                
-            </ul>
-            <p>Privacy statement</p>
-        </div>
+        <footer className="px-3 py-4 mt-7 bg-white text-2 text-gray-500 transition-colors duration-200">
+            <div className="flex flex-col">
+                <div className="mt-4 md:mt-0 flex flex-col md:flex-row">
+                    <nav className="flex-1 flex flex-col items-center justify-center md:items-end md:border-r border-gray-100 md:pr-5">
+                        <a href="/#" className="hover:text-gray-700">
+                            About
+                        </a>
+                        <a href="/#" className="hover:text-gray-700">
+                            Blog
+                        </a>
+                        <a href="/#" className="hover:text-gray-700">
+                            Support
+                        </a>
+                    </nav>
+                    <div className="mt-4 md:mt-0 flex-1 flex items-center justify-center md:border-r border-gray-100">
+                        <span className="sr-only">
+                            View on GitHub
+                        </span>
+                        <img src={LogoImg} alt="Helping Hands" />
+                    </div>
+                    <div className="flex-1 flex flex-col items-center justify-center mt-2 md:mt-0 md:items-start md:pl-5">
+                        <span>
+                            © 2021
+                        </span>
+                        <span>
+                            Helping Hands
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </footer>
     )
 }
 
-export default Footer
+export default Footer;
