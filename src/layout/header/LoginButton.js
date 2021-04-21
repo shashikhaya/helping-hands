@@ -1,8 +1,7 @@
-const LoginButton = ({ text }) => {
+const LoginButton = ({ text, loginLogout }) => {
     return (
-        <button className="btn btn-purple">
-            {/* Later we will make it dynamic, I.e. login/logout */}
-            { text }           
+        <button className="btn btn-purple" onClick={loginLogout}>
+            { text }
         </button>
     )
 }
