@@ -2,19 +2,11 @@ import { useState } from 'react';
 import LoginButton from './LoginButton';
 import LogoImg from './handshake.svg'
 
-const Header = () => {
+const Header = ({ handleClick }) => {
     const [open, setOpen] = useState(false);
     
     // this state will need to move higher up eventually
     const [loggedIn, setLoggedIn] = useState(false);
-
-    const loginLogout = () => {
-        // more logic
-        if (open) {
-            setOpen(!open);
-        }
-        setLoggedIn(!loggedIn);
-    }
 
     const toggleDropdown = () => {
         setOpen(!open);
@@ -43,7 +35,7 @@ const Header = () => {
                                     </a>
                                 </>
                             }
-                            <LoginButton text={loggedIn ? "Logout": "Login"} loginLogout={loginLogout} />
+                            <LoginButton text={loggedIn ? "Logout": "Login/Register"} handleClick={handleClick} />
                         </div>
                     </div>
                     <div class="flex md:hidden">
@@ -71,7 +63,7 @@ const Header = () => {
                                     </a>
                                 </>
                             }
-                            <LoginButton text={loggedIn ? "Logout": "Login"} loginLogout={loginLogout} />
+                            <LoginButton text={loggedIn ? "Logout": "Login/Register"} handleClick={handleClick} />
                         </div>
                     </div>
                 }
