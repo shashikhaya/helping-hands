@@ -7,11 +7,11 @@ const FeatureInfo = ({ img, heading, subHeading }) => {
                         <img src={img} alt="" className="mx-auto object-cover h-13 w-13"></img>
                     </a>
                 </div>
-                <div className="flex-1 pl-1 mr-16">
-                    <div className="font-medium dark:text-white">
+                <div className="flex-1 pl-1">
+                    <div className="font-medium">
                         { heading }
                     </div>
-                    <div className="text-gray-600 dark:text-gray-200 text-sm">
+                    <div className="text-gray-600 text-sm">
                         { subHeading }
                     </div>
                 </div>

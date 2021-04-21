@@ -11,16 +11,16 @@ import RegistrationInfo from './RegistrationInfo';
 const LandingInfo = () => {
     return (
         <>
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 gap-4 mb-4">
                 <div className="my-auto">
                     <h1 className="text-4xl font-bold text-purple-700">Our mission statement</h1>
-                    <p className="text-3xl font-semibold">Make the world a better place, one hand at a time ;)</p>
+                    <p className="text-3xl font-semibold">Making the world a better place, one hand at a time.</p>
                 </div>
                 <div>
                     <img src={globe} alt="globe" className="m-auto w-4/5"/>
                 </div>
             </div>
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-3 gap-4 mb-4">
                 <FeatureInfo 
                     img={ help } 
                     heading="Help"
@@ -52,16 +52,16 @@ const LandingInfo = () => {
                     subHeading="Get something from the shop."
                 />
             </div>
-            <div>
+            <div className="grid md:grid-cols-2 gap-4">
                 <RegistrationInfo 
                     title="Feeling helpful?" 
-                    text="Even the smallest task can really help" 
-                    button="Sign up to help" 
+                    text="Even the smallest task can really help!" 
+                    buttonText="Sign up to help" 
                 />  
                 <RegistrationInfo 
                     title="Need a hand?" 
-                    text="People are good" 
-                    button="Sign up for help" 
+                    text="No task too small!" 
+                    buttonText="Sign up for help" 
                 />          
             </div>
         </>
