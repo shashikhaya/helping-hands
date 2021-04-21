@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
-import Task from './Task';
-
+import { useState, useEffect, Component } from 'react';
+import Task from './tasks';
+    
 const TaskList = () => {
+
     // this state will come from higher up
     const [tasks, setTasks] = useState([]);
 
