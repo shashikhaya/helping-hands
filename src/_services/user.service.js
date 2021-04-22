@@ -15,9 +15,6 @@ const login = (username, password) => {
                 // user logged in between page refreshes
                 const token = key["accessToken"];
                 localStorage.setItem('token', JSON.stringify(token));
-
-                // this is how you need to grab token
-                // localStorage.getItem('token')
             }
 
             return key;
