@@ -15,13 +15,18 @@ function App() {
     setShow(!show);
   }
 
+  const getCoords = async (postcode) =>{
+    const locResponse = await fetch(`https://postcodes.io/postcodes/${postcode}`)
+    const location = await locResponse.json()
+    return {type:location.result.admin_district,coordinates:[location.result.latitude,location.result.longitude]}
+
+  }
+
   const postTask = async (task) => {
     // // get username
     const user = 'get username'
     // convert location into coordinates
-    const locResponse = await fetch(`https://postcodes.io/postcodes/${task.location}`)
-    const location = await locResponse.json()
-    const coordinates = [location.result.latitude,location.result.longitude]
+    const location_data = await getCoords(task.location)
     // get the dateTime
     const today = new Date();
     const date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
@@ -29,8 +34,8 @@ function App() {
     const fullTask = {...task,
                       status:'posted', 
                       username:user,
-                      location:{type:location.result.admin_district,
-                                coordinates:coordinates},
+                      location:{type:location_data.type,
+                                coordinates:location_data.coordinates},
                       dateTime:date,
                     }
     // TODO: post the fullTask as the body to the API
