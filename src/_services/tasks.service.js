@@ -34,34 +34,30 @@ const handleResponse = (response) => {
     });
 }
 
-const postTask = async(body) =>{
-    const headers ={ 'Content-Type': 'application/json',...authHeader() }
+const postTask = (task) => {
     const requestOptions = {
         method: 'POST',
-        headers: headers,
-        body:JSON.stringify(body)
+        headers: { 'Content-Type': 'application/json', ...authHeader() },
+        body: JSON.stringify({ ...task })
     };
+
     return fetch(`${baseUrl}/tasks`, requestOptions)
-    .then(handleResponse)
+        .then(handleResponse)
 };
 
-
-const putTaskStatus = async(body) =>{
-
+const putTaskStatus = () => {
     const requestOptions = {
         method: 'PUT',
         headers: authHeader(),
-        body:{"status":"in-progress"}
+        body:{"status": "in-progress"}
     };
 
     return fetch(`${baseUrl}/tasks`, requestOptions)
-    .then(handleResponse)
+        .then(handleResponse)
 };
 
 export const tasksService = {
     getTasks,
     postTask,
-    putTaskStatus,
+    putTaskStatus
 };
-
-
