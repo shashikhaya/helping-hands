@@ -10,6 +10,8 @@ import TaskPage from './layout/task-page/TaskPage';
 import { AccountBox } from "./components/accountBox"
 import authHeader from './_helpers/authHeader'
 import { userService } from './_services';
+import getCoords from './_helpers/getCoords'
+
 
 function App() {
   const [show, setShow] = useState(false);
@@ -33,12 +35,6 @@ function App() {
   const handleLogoutClick = () => {
     userService.logout();
     setLoggedIn(false);
-  }
-
-  const getCoords = async (postcode) =>{
-    const locResponse = await fetch(`https://postcodes.io/postcodes/${postcode}`)
-    const location = await locResponse.json()
-    return {type:location.result.admin_district,coordinates:[location.result.latitude,location.result.longitude]}
   }
 
   const postTask = async (task) => {

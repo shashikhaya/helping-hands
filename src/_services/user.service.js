@@ -44,7 +44,21 @@ const handleResponse = (response) => {
     });
 }
 
+
+const register = (body) => {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+    };
+
+    return fetch(`${baseUrl}/users/register`, requestOptions)
+        .then(handleResponse)
+};
+
 export const userService = {
     login,
-    logout
+    logout,
+    register
 };
+
