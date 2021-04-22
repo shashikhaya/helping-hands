@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import LoginButton from './LoginButton';
 import LogoImg from './handshake.svg'
+import {Link} from 'react-router-dom'
 
 const Header = ({ handleClick, loggedIn }) => {
     const [open, setOpen] = useState(false);
@@ -22,15 +23,16 @@ const Header = ({ handleClick, loggedIn }) => {
                         <div className="flex items-center space-x-4">
                             {loggedIn &&
                                 <>
-                                    <a href="/#" className="navlink">
-                                        Home
-                                    </a>
-                                    <a href="/#" className="navlink">
-                                        Tasks
-                                    </a>
-                                    <a href="/#" className="navlink">
-                                        Dashboard
-                                    </a>
+                                    <Link to={{ pathname: '/'}} className="navlink">
+                                            Home
+                                    </Link>                               
+                                    <Link to={{ pathname: '/tasks'}} className="navlink">
+                                            Tasks
+                                    </Link>
+                                    {/* need to add the dashboard */}
+                                    <Link to={{ pathname: '/#'}} className="navlink">
+                                            Dashboard
+                                    </Link>
                                 </>
                             }
                             <LoginButton text={loggedIn ? "Logout": "Login/Register"} handleClick={handleClick} />
