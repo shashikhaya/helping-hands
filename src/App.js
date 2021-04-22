@@ -7,9 +7,18 @@ import TaskList from './tasks/TaskList';
 import PostTask from './tasks/PostTask';
 import TaskPage from './layout/task-page/TaskPage';
 import { AccountBox } from "./components/accountBox"
+import authHeader from './_helpers/authHeader'
+
 
 function App() {
   const [show, setShow] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect (()=>{
+    if (authHeader()) {
+      setLoggedIn(true)
+    }
+  }, [])
 
   const handleClick = () => {
     setShow(!show);
@@ -45,7 +54,7 @@ function App() {
   return (
     <Router>
       <div className="flex flex-col h-screen">
-        <Header handleClick={handleClick} />
+        <Header handleClick={handleClick} loggedIn={loggedIn} />
         <AccountBox onClose={() => setShow(false)} show={show} />
         <div className="container mx-auto mb-auto px-8">
           <Switch>

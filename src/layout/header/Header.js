@@ -2,11 +2,9 @@ import { useState } from 'react';
 import LoginButton from './LoginButton';
 import LogoImg from './handshake.svg'
 
-const Header = ({ handleClick }) => {
+const Header = ({ handleClick, loggedIn }) => {
     const [open, setOpen] = useState(false);
     
-    // this state will need to move higher up eventually
-    const [loggedIn, setLoggedIn] = useState(false);
 
     const toggleDropdown = () => {
         setOpen(!open);
