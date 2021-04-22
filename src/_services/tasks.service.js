@@ -32,6 +32,21 @@ const handleResponse = (response) => {
     });
 }
 
+const getTask = (id) => {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader(),
+    };
+
+    return fetch(`${baseUrl}/tasks/${id}`, requestOptions)
+        .then(handleResponse)
+        .then(task => {
+            return task;
+        });
+}
+
+
 export const tasksService = {
-    getTasks
+    getTasks,
+    getTask,
 };
