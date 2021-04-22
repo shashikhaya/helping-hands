@@ -54,15 +54,16 @@ const Header = ({ handleLoginClick, handleLogoutClick, loggedIn }) => {
                         <div class="flex flex-col">
                             {loggedIn &&
                                 <>
-                                    <a href="/#" className="navlink">
-                                        Home
-                                    </a>
-                                    <a href="/#" className="navlink">
-                                        Tasks
-                                    </a>
-                                    <a href="/#" className="navlink">
-                                        Dashboard
-                                    </a>
+                                    <Link to={{ pathname: '/'}} className="navlink">
+                                            Home
+                                    </Link>                               
+                                    <Link to={{ pathname: '/tasks'}} className="navlink">
+                                            Tasks
+                                    </Link>
+                                    {/* need to add the dashboard */}
+                                    <Link to={{ pathname: '/#'}} className="navlink">
+                                            Dashboard
+                                    </Link>
                                     <Button text="Logout" handleClick={handleLogoutClick} />
                                 </>
                             }
