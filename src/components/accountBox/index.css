@@ -45,4 +45,8 @@
     background-color: rgb(109,40,217);
     color: #fff;
   }
+
+  button{
+    @apply w-full border text-base font-medium rounded-l-md text-black bg-gray-100 px-4 py-2
+  }
   

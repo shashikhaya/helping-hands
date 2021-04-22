@@ -9,6 +9,7 @@ import {
 } from "./common";
 import { Marginer } from "../marginer";
 import { AccountContext } from "./accountContext";
+import "./index.css";
 
 export function SignupForm(props) {
   const { switchToSignin } = useContext(AccountContext);
@@ -23,10 +24,10 @@ export function SignupForm(props) {
         <Input type="password" placeholder="Confirm Password" />
         
         <div class="flex items-center">
-            <button type="button" class="w-full border-r text-base font-medium rounded-l-md text-black bg-gray-100 px-4 py-2">
+            <button type="button">
                 User
             </button>
-            <button type="button" class="w-full border-l text-base font-medium rounded-r-md text-black bg-gray-100 px-4 py-2">
+            <button type="button">
                 Helper
             </button>
         </div>
