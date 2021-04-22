@@ -51,7 +51,6 @@ export function SignupForm(props) {
     setAccountType(e.target.value)
   }
 
-
   const handleSubmit = async(e) => {
     e.preventDefault();
 
@@ -78,6 +77,7 @@ export function SignupForm(props) {
             user => history.push('/'),
             error => console.log(error)
         );
+    
   }
 
   return (
@@ -89,12 +89,11 @@ export function SignupForm(props) {
         <Input type="password" placeholder="Password" onChange={handlePasswordChange}/>
         <Input type="password" placeholder="Confirm Password" onChange={handleConfirmPasswordChange}/>
 
-        <div class="flex items-center"> 
+        <div class="radio-group">             
+            <Input id="user" type="radio" name="accountType" value="user" onClick={handleAccountTypeChange} />
             <label for="accountType">User</label>
-            <Input type="radio" name="accountType" value="user" onClick={handleAccountTypeChange} />
+            <Input id="helper" type="radio" name="accountType" value="helper" onClick={handleAccountTypeChange} />
             <label for="accountType">Helper</label>
-            <Input type="radio" name="accountType" value="helper" onClick={handleAccountTypeChange} />
-
         </div>
 
       </FormContainer>

@@ -37,17 +37,31 @@
     transform: translateY(-200px);
   }
 
-  button{
-    @apply w-full border text-base font-medium rounded-l-md text-black bg-gray-100 px-4 py-2
+  input[type=radio] {
+    position: absolute;
+    opacity: 0;
   }
-
-  button:hover{
-    opacity: 70%;
-  }
-
-  button:focus{
-    background-color: rgb(109,40,217);
-    color: #fff;
-  }
-
   
+  label {
+    color: #9a929e;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 7px 23px 7px 25px;
+  }
+  
+  input[type=radio]:checked + label {
+    color: #ffffff;
+    background: rgb(109,40,217);
+  }
+
+  label + input[type=radio] + label {
+    border-left: solid 3px rgb(109,40,217);
+  }
+  
+  .radio-group {
+    border: solid 3px rgb(109,40,217);
+    display: inline-block;
+    margin: 16.7px;
+    border-radius: 10px;
+  }
