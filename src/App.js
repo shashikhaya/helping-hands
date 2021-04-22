@@ -4,7 +4,7 @@ import Header from './layout/header/Header';
 import LandingInfo from './layout/body/LandingInfo';
 import Footer from './layout/footer/Footer';
 import TaskList from './tasks/TaskList';
-import TaskDetail from './tasks/TaskDetail';
+import PostTask from './tasks/PostTask';
 import TaskPage from './layout/task-page/TaskPage';
 import { AccountBox } from "./components/accountBox"
 
@@ -13,6 +13,28 @@ function App() {
 
   const handleClick = () => {
     setShow(!show);
+  }
+
+  const postTask = async (task) => {
+    // // get username
+    const user = 'get username'
+    // convert location into coordinates
+    const locResponse = await fetch(`https://postcodes.io/postcodes/${task.location}`)
+    const location = await locResponse.json()
+    const coordinates = [location.result.latitude,location.result.longitude]
+    // get the dateTime
+    const today = new Date();
+    const date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+
+    const fullTask = {...task,
+                      status:'posted', 
+                      username:user,
+                      location:{type:location.result.admin_district,
+                                coordinates:coordinates},
+                      dateTime:date,
+                    }
+    // TODO: post the fullTask as the body to the API
+    console.log(fullTask)
   }
   
   return (
@@ -27,6 +49,9 @@ function App() {
             </Route>
             <Route exact path="/tasks">
               <TaskList />
+            </Route>
+            <Route exact path="/tasks/post">
+              <PostTask onPost={postTask} />
             </Route>
             <Route path="/task/:id">
               <TaskPage />
