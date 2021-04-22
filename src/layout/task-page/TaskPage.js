@@ -21,7 +21,7 @@ const TaskPage = () => {
             error => console.log(error)
         
         );
-    }, []);
+    }, [id]);
         //get the task json from db
 
     return (
