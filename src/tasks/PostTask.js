@@ -59,19 +59,9 @@ const PostTask = () => {
         }
         
         tasksService.postTask(newTask)
-            .then(data => {
+            .then((data) => {
                 console.log(data["message"]);
-                
-                // clear form
-                e.target.reset();
-                console.log("test");
-                // setName('');
-                // setType('');
-                // setDescription('');
-                // setLocation('');
-                // setDuration('');
-                // setCovidInfo('');
-                // setUsername('');
+                e.target.reset();  // clear form
             })
             .catch(error => console.log(error));
     }
