@@ -21,7 +21,9 @@ const handleResponse = (response) => {
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
-                window.location.reload(true);
+                // window.location.reload(true);
+                console.log(response)
+                return
             }
 
             const error = (data && data.message) || response.statusText;
@@ -32,6 +34,30 @@ const handleResponse = (response) => {
     });
 }
 
+const postTask = (task) => {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', ...authHeader() },
+        body: JSON.stringify({ ...task })
+    };
+
+    return fetch(`${baseUrl}/tasks`, requestOptions)
+        .then(handleResponse)
+};
+
+const putTaskStatus = () => {
+    const requestOptions = {
+        method: 'PUT',
+        headers: authHeader(),
+        body:{"status": "in-progress"}
+    };
+
+    return fetch(`${baseUrl}/tasks`, requestOptions)
+        .then(handleResponse)
+};
+
 export const tasksService = {
-    getTasks
+    getTasks,
+    postTask,
+    putTaskStatus
 };
