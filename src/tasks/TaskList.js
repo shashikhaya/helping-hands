@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Task from './Task';
+import { tasksService } from '../_services';
 
 const TaskList = () => {
     // this state will come from higher up
@@ -8,38 +9,14 @@ const TaskList = () => {
 
     // just mock data for now
     useEffect(() => {
-        setTasks([
-            {
-                id: 1,
-                title: "Get Milk",
-                description: "Please get me some milk.",
-                status: "Posted",
-                type: "Shopping",
-                location: "London",
-                duration: "10 mins",
-                covidInfo: "Negative"
+        tasksService.getTasks()
+        .then(
+            tasks => {
+                console.log(tasks);
+                setTasks(tasks);
             },
-            {
-                id: 2,
-                title: "Get Eggs",
-                description: "Please get me some eggs.",
-                status: "Posted",
-                type: "Shopping",
-                location: "Birmingham",
-                duration: "9 mins",
-                covidInfo: "Negative"
-            },
-            {
-                id: 3,
-                title: "Get Flour",
-                description: "Please get me some flour.",
-                status: "Posted",
-                type: "Shopping",
-                location: "Manchester",
-                duration: "11 mins",
-                covidInfo: "Negative"
-            },
-        ]);
+            error => console.log(error)
+        );
     }, []);
 
     const TasksComponents = tasks.map((task) => (
@@ -51,7 +28,7 @@ const TaskList = () => {
                 description={task.description}
                 status={task.status}
                 type={task.type}
-                location={task.location}
+                location={task.location.type}
                 duration={task.duration}
                 covidInfo={task.covidInfo}
             />

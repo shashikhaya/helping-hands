@@ -94,8 +94,6 @@ const expandingTransition = {
 };
 
 export function AccountBox(props) {
-
-
   const [isExpanded, setExpanded] = useState(false);
   const [active, setActive] = useState("signin");
 
@@ -167,7 +165,7 @@ export function AccountBox(props) {
               )}
             </TopContainer>
             <InnerContainer>
-              {active === "signin" && <LoginForm />}
+              {active === "signin" && <LoginForm onSubmit={props.onLoginSubmit} />}
               {active === "signup" && <SignupForm />}
               <button onClick={props.onClose}>Close</button>
             </InnerContainer>

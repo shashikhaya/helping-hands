@@ -36,6 +36,7 @@ export function LoginForm(props) {
             user => history.push('/'),
             error => console.log(error)
         );
+    props.onSubmit();
   }
 
   return (

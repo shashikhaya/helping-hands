@@ -1,4 +1,4 @@
-const LoginButton = ({ text, loginLogout, handleClick }) => {
+const Button = ({ text, handleClick }) => {
     return (
         <button className="btn btn-purple" onClick={handleClick}>
             { text }
@@ -6,4 +6,4 @@ const LoginButton = ({ text, loginLogout, handleClick }) => {
     )
 }
 
-export default LoginButton
+export default Button;

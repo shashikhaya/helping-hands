@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import _ from 'lodash';
 import Header from './layout/header/Header';
 import LandingInfo from './layout/body/LandingInfo';
 import Footer from './layout/footer/Footer';
@@ -8,27 +9,36 @@ import PostTask from './tasks/PostTask';
 import TaskPage from './layout/task-page/TaskPage';
 import { AccountBox } from "./components/accountBox"
 import authHeader from './_helpers/authHeader'
-
+import { userService } from './_services';
 
 function App() {
   const [show, setShow] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
 
-  useEffect (()=>{
-    if (authHeader()) {
-      setLoggedIn(true)
+  useEffect(() => {
+    if (!_.isEmpty(authHeader())) {
+      setLoggedIn(true);
     }
   }, [])
 
-  const handleClick = () => {
+  const handleLoginClick = () => {
     setShow(!show);
+  }
+
+  const handleLogin = () => {
+    setLoggedIn(true);
+    setShow(!show);
+  }
+
+  const handleLogoutClick = () => {
+    userService.logout();
+    setLoggedIn(false);
   }
 
   const getCoords = async (postcode) =>{
     const locResponse = await fetch(`https://postcodes.io/postcodes/${postcode}`)
     const location = await locResponse.json()
     return {type:location.result.admin_district,coordinates:[location.result.latitude,location.result.longitude]}
-
   }
 
   const postTask = async (task) => {
@@ -54,12 +64,12 @@ function App() {
   return (
     <Router>
       <div className="flex flex-col h-screen">
-        <Header handleClick={handleClick} loggedIn={loggedIn} />
-        <AccountBox onClose={() => setShow(false)} show={show} />
+        <Header handleLoginClick={handleLoginClick} handleLogoutClick={handleLogoutClick} loggedIn={loggedIn} />
+        <AccountBox onClose={() => setShow(false)} onLoginSubmit={handleLogin} show={show} />
         <div className="container mx-auto mb-auto px-8">
           <Switch>
             <Route exact path="/">
-              <LandingInfo handleClick={handleClick}/>
+              <LandingInfo handleClick={handleLoginClick}/>
             </Route>
             <Route exact path="/tasks">
               <TaskList />

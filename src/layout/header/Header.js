@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import LoginButton from './LoginButton';
+import Button from './Button';
 import LogoImg from './handshake.svg'
 import {Link} from 'react-router-dom'
 
-const Header = ({ handleClick, loggedIn }) => {
+const Header = ({ handleLoginClick, handleLogoutClick, loggedIn }) => {
     const [open, setOpen] = useState(false);
     
-
     const toggleDropdown = () => {
         setOpen(!open);
     }
@@ -33,9 +32,12 @@ const Header = ({ handleClick, loggedIn }) => {
                                     <Link to={{ pathname: '/#'}} className="navlink">
                                             Dashboard
                                     </Link>
+                                    <Button text="Logout" handleClick={handleLogoutClick} />
                                 </>
                             }
-                            <LoginButton text={loggedIn ? "Logout": "Login/Register"} handleClick={handleClick} />
+                            {!loggedIn &&
+                                <Button text="Login" handleClick={handleLoginClick} />
+                            }
                         </div>
                     </div>
                     <div class="flex md:hidden">
@@ -61,9 +63,12 @@ const Header = ({ handleClick, loggedIn }) => {
                                     <a href="/#" className="navlink">
                                         Dashboard
                                     </a>
+                                    <Button text="Logout" handleClick={handleLogoutClick} />
                                 </>
                             }
-                            <LoginButton text={loggedIn ? "Logout": "Login/Register"} handleClick={handleClick} />
+                            {!loggedIn &&
+                                <Button text="Login" handleClick={handleLoginClick} />
+                            }
                         </div>
                     </div>
                 }
