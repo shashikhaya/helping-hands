@@ -19,7 +19,7 @@ const login = (username, password) => {
                 // store user account details (quick fix)
                 // TODO: store user details properly in state?
                 const accDetails=res['account'];
-                localStorage.setItem('acc',JSON.stringify(accDetails));
+                localStorage.setItem('account',JSON.stringify(accDetails));
 
 
             }
@@ -31,6 +31,7 @@ const login = (username, password) => {
 const logout = () => {
     // remove token from local storage to log user out
     localStorage.removeItem('token');
+    localStorage.removeItem('account')
 }
 
 const handleResponse = (response) => {
