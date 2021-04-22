@@ -33,6 +33,7 @@ function App() {
                                 coordinates:coordinates},
                       dateTime:date,
                     }
+    // TODO: post the fullTask as the body to the API
     console.log(fullTask)
   }
   
