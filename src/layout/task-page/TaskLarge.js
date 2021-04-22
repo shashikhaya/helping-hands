@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 // { id, title, description, status, type, location, duration, covidInfo }
 const TaskLarge = ({task}) => {
     const [status,setStatus] = useState(task.status)
+    const account = JSON.parse(localStorage.getItem('account'));
     
     useEffect(() => {
         console.log(task)
@@ -30,7 +31,7 @@ const TaskLarge = ({task}) => {
                 </div>
                 {/* TODO: fix Map */}
                 {/* <Map coords={task.location.coordinates} /> */}
-                <button className="btn btn-purple float-right">Lend a hand</button>  
+                {account.role ==="helper" && <button className="btn btn-purple float-right">Lend a hand</button>}  
             </div>
         </div>            
     )

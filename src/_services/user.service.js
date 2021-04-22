@@ -29,6 +29,7 @@ const login = (username, password) => {
 }
 
 const logout = () => {
+    // TODO: add autologout after specific period?
     // remove token from local storage to log user out
     localStorage.removeItem('token');
     localStorage.removeItem('account')
