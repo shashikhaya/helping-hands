@@ -1,9 +1,29 @@
 import TaskLarge from './TaskLarge'
 import TaskSmall from './TaskSmall'
 
-import { Link } from 'react-router-dom';
+import {tasksService} from '../../_services/tasks.service'
+
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+
 
 const TaskPage = () => {
+    const [task, setTask]=useState({});
+    const { id } = useParams()
+    useEffect(() =>{
+        console.log(id)
+        tasksService.getTask(id)
+        .then(
+            (task) => {
+                console.log(task.data);
+                setTask(task.data);
+            },
+            error => console.log(error)
+        
+        );
+    }, []);
+        //get the task json from db
+
     return (
         <div  className="space-y-5" >
             <div className="">
@@ -11,7 +31,7 @@ const TaskPage = () => {
                     Back to task list
                 </Link>
             </div>
-            <TaskLarge />
+            <TaskLarge task={task} />
             <h3>Similar tasks</h3>
             <div className="flex space-x-3" >
                 <TaskSmall />

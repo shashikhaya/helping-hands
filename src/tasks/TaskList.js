@@ -11,7 +11,7 @@ const TaskList = () => {
     useEffect(() => {
         tasksService.getTasks()
         .then(
-            tasks => {
+          (tasks) => {
                 setTasks(tasks);
             },
             error => console.log(error)
@@ -21,13 +21,13 @@ const TaskList = () => {
     const TasksComponents = tasks.map((task) => (
         <>
             <Task
-                key={task.id}
-                id={task.id}
-                title={task.title}
+                key={task._id}
+                id={task._id}
+                title={task.taskName}
                 description={task.description}
                 status={task.status}
-                type={task.type}
-                location={task.location.type}
+                type={task.taskType}
+                location={task.location.coordinates}
                 duration={task.duration}
                 covidInfo={task.covidInfo}
             />

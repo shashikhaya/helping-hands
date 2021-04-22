@@ -34,6 +34,19 @@ const handleResponse = (response) => {
     });
 }
 
+const getTask = (id) => {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader(),
+    };
+
+    return fetch(`${baseUrl}/tasks/${id}`, requestOptions)
+        .then(handleResponse)
+        .then(task => {
+            return task;
+        });
+}
+
 const postTask = (task) => {
     const requestOptions = {
         method: 'POST',
@@ -58,6 +71,7 @@ const putTaskStatus = () => {
 
 export const tasksService = {
     getTasks,
+    getTask,
     postTask,
     putTaskStatus
 };
