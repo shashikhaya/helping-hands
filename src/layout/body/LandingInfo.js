@@ -8,7 +8,7 @@ import money from './money.svg';
 import FeatureInfo from './FeatureInfo';
 import RegistrationInfo from './RegistrationInfo';
 
-const LandingInfo = () => {
+const LandingInfo = ({ handleClick }) => {
     return (
         <>
             <div className="grid md:grid-cols-2 gap-4 mb-4">
@@ -24,44 +24,56 @@ const LandingInfo = () => {
                 <FeatureInfo 
                     img={ help } 
                     heading="Help"
-                    subHeading="Get something from the shop."
+                    subHeading="Providing the best helpers to all in need."
                 />
                 <FeatureInfo 
                     img={ love } 
                     heading="Love"
-                    subHeading="Get something from the shop."
+                    subHeading="Each act spreads love."
                 />
                 <FeatureInfo 
                     img={ health } 
                     heading="Health"
-                    subHeading="Get something from the shop."
+                    subHeading="Pick up prescriptions for those who can't."
                 />
                 <FeatureInfo 
                     img={ balloon } 
                     heading="Balloon"
-                    subHeading="Get something from the shop."
+                    subHeading="Deliver a birthday surprise to someone alone."
                 />
                 <FeatureInfo 
                     img={ money } 
                     heading="Money"
-                    subHeading="Get something from the shop."
+                    subHeading="All our services are free thanks to our volunteers."
                 />
                 <FeatureInfo 
                     img={ coffee } 
                     heading="Coffee"
-                    subHeading="Get something from the shop."
+                    subHeading="A chat over a hot drink can make a week."
                 />
             </div>
             <div className="grid md:grid-cols-2 gap-4">
                 <RegistrationInfo 
+                    handleClick={handleClick}
                     title="Feeling helpful?" 
                     text="Even the smallest task can really help!" 
-                    buttonText="Sign up to help" 
+                    buttonText="Sign up to help"
+                    statement1="Let us know where you are. "
+                    statement2="We'll show you people who need help nearby. " 
+                    statement3="Pick a task you can do. " 
+                    statement4="Do something good. " 
+                    statement5="Make someones day. " 
                 />  
                 <RegistrationInfo 
+                    handleClick={handleClick}
                     title="Need a hand?" 
                     text="No task too small!" 
-                    buttonText="Sign up for help" 
+                    buttonText="Sign up for help"
+                    statement1="Let us know where you are. "
+                    statement2="Tell us what you need help with. " 
+                    statement3="Anything at all, no task to small. " 
+                    statement4="We'll find someone nearby to help. " 
+                    statement5="No fee required. "  
                 />          
             </div>
         </>

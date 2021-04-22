@@ -50,7 +50,7 @@ function App() {
         <div className="container mx-auto mb-auto px-8">
           <Switch>
             <Route exact path="/">
-              <LandingInfo />
+              <LandingInfo handleClick={handleClick}/>
             </Route>
             <Route exact path="/tasks">
               <TaskList />
