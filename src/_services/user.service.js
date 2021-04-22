@@ -9,22 +9,15 @@ const login = (username, password) => {
 
     return fetch(`${baseUrl}/users/login`, requestOptions)
         .then(handleResponse)
-        .then(res => {
-            if (res) {
+        .then(key => {
+            if (key) {
                 // store auth token in local storage to keep
                 // user logged in between page refreshes
-                const token = res["accessToken"];
+                const token = key["accessToken"];
                 localStorage.setItem('token', JSON.stringify(token));
-                
-                // store user account details (quick fix)
-                // TODO: store user details properly in state?
-                const accDetails=res['account'];
-                localStorage.setItem('acc',JSON.stringify(accDetails));
-
-
             }
 
-            return res;
+            return key;
         });
 }
 

@@ -5,6 +5,8 @@ import getPostcode from '../_helpers/getPostcode'
 const Task = (props) => {
     const [location,setLocation] = useState()
 
+
+
     useEffect(() => {
         async function getLocation(){
             let location= await getPostcode(props.location[1],props.location[0])
@@ -12,8 +14,9 @@ const Task = (props) => {
         }
         getLocation()
 
-    }, [props.location]
+    }, []
     )
+
 
     return (
         <div className="rounded border border-gray overflow-hidden p-4 mb-4">
