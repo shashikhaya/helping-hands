@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Task from './Task';
 
 const TaskList = () => {
@@ -59,6 +60,9 @@ const TaskList = () => {
 
     return (
         <div>
+            <Link to={{ pathname: '/tasks/post'}} className="btn btn-purple">
+                    Post a task
+            </Link>
             {TasksComponents}
         </div>
     )

@@ -7,7 +7,6 @@ import love from './love.svg';
 import money from './money.svg';
 import FeatureInfo from './FeatureInfo';
 import RegistrationInfo from './RegistrationInfo';
-import AccountBox from '../../components/accountBox';
 
 const LandingInfo = () => {
     return (

@@ -169,7 +169,7 @@ export function AccountBox(props) {
             <InnerContainer>
               {active === "signin" && <LoginForm />}
               {active === "signup" && <SignupForm />}
-                <button onClick={props.onClose}>Close</button>
+              <button onClick={props.onClose}>Close</button>
             </InnerContainer>
           </BoxContainer>
         </AccountContext.Provider>

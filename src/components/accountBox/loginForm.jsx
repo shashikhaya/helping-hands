@@ -41,7 +41,7 @@ export function LoginForm(props) {
   return (
     <BoxContainer>
       <FormContainer>
-        <Input type="text" placeholder="Username" onChange={handleUsernameChange} />
+        <Input type="username" placeholder="Username" onChange={handleUsernameChange} />
         <Input type="password" placeholder="Password" onChange={handlePasswordChange} />
       </FormContainer>
       <Marginer direction="vertical" margin={10} />
