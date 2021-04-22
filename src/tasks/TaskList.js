@@ -11,8 +11,7 @@ const TaskList = () => {
     useEffect(() => {
         tasksService.getTasks()
         .then(
-            (tasks) => {
-                console.log(tasks);
+          (tasks) => {
                 setTasks(tasks);
             },
             error => console.log(error)
@@ -36,12 +35,14 @@ const TaskList = () => {
     ));
 
     return (
-        <div>
-            <Link to={{ pathname: '/tasks/post'}} className="btn btn-purple">
-                    Post a task
-            </Link>
+        <>
+            <div className="flex">
+                <Link to={{ pathname: '/tasks/post'}} className="btn btn-gray text-center w-full">
+                    +
+                </Link>
+            </div>
             {TasksComponents}
-        </div>
+        </>
     )
 }
 
