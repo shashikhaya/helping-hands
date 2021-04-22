@@ -41,6 +41,7 @@ const TaskList = () => {
                     +
                 </Link>
             </div>
+            <p>Showing {tasks.length} tasks </p>
             {TasksComponents}
         </>
     )
