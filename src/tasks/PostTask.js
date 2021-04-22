@@ -18,27 +18,29 @@ const PostTask = ({onPost}) => {
             alert('Missing fields')
             return
         }
+        const date = new Date().toJSON().slice(0,10).replace(/-/g,'/')
+        const coords = await getCoords(location)
         // TODO: need to validate postcode before posting registration
         const body = {"taskName":taskName,
                       "taskType":taskType,
                       "status":"posted",
                       "description":description,
                       "username":accountName,
-                      "dateTime":new Date().toJSON().slice(0,10).replace(/-/g,'/'),
-                      "location":await getCoords(location),
+                      "dateTime":date,
+                      "location":{"coordinates":coords.coordinates},
                       "duration":duration,
                       "covidInfo":covidInfo,
                     }
         console.log(body)
-        // tasksService.postTask(body)
-
+        tasksService.postTask(body)
+        
         // clear form
-        // setTask('')
-        // setType('')
-        // setDescription('')
-        // setLocation('')
-        // setDuration('')
-        // setCovid('')
+        setTask('')
+        setType('')
+        setDescription('')
+        setLocation('')
+        setDuration('')
+        setCovid('')
 
       }
     
