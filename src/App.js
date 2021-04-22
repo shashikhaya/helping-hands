@@ -29,7 +29,8 @@ function App() {
     const fullTask = {...task,
                       status:'posted', 
                       username:user,
-                      location:{coordinates:coordinates},
+                      location:{type:location.result.admin_district,
+                                coordinates:coordinates},
                       dateTime:date,
                     }
     console.log(fullTask)
