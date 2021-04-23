@@ -32,7 +32,9 @@ const Header = ({ handleLoginClick, handleLogoutClick, loggedIn }) => {
                                     <Link to={{ pathname: '/#'}} className="navlink">
                                             Dashboard
                                     </Link>
-                                    <Button text="Logout" handleClick={handleLogoutClick} />
+                                    <Link to={{ pathname: '/'}} >
+                                        <Button text="Logout" handleClick={handleLogoutClick} />
+                                    </Link>
                                 </>
                             }
                             {!loggedIn &&
@@ -64,7 +66,10 @@ const Header = ({ handleLoginClick, handleLogoutClick, loggedIn }) => {
                                     <Link to={{ pathname: '/#'}} className="navlink">
                                             Dashboard
                                     </Link>
-                                    <Button text="Logout" handleClick={handleLogoutClick} />
+                                    <Link to={{ pathname: '/'}} >
+                                        <Button text="Logout" handleClick={handleLogoutClick} />
+                                    </Link>
+                                    
                                 </>
                             }
                             {!loggedIn &&
