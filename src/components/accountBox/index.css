@@ -43,11 +43,17 @@
   }
   
   label {
+    box-sizing: border-box;
+    width:50%;
+    height:100%;
     color: #9a929e;
-    display: inline-block;
+    display: inline-flex;
+    position: center;
     cursor: pointer;
     font-weight: bold;
-    padding: 7px 23px 7px 25px;
+    padding: 10px 30px 10px 25px;
+    max-width:50%;
+    margin: 0 0;
   }
   
   input[type=radio]:checked + label {
