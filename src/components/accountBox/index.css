@@ -44,7 +44,8 @@
   
   label {
     color: #9a929e;
-    display: inline-block;
+    display: inline-flex;
+    position: center;
     cursor: pointer;
     font-weight: bold;
     padding: 7px 23px 7px 25px;
