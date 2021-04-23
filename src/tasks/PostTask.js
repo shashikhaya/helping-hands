@@ -11,6 +11,7 @@ const PostTask = () => {
     const [duration, setDuration] = useState('');
     const [covidInfo, setCovidInfo] = useState('');
     const [username, setUsername] = useState('');
+    const [responseMsg, setResponseMsg] = useState('');
 
     const handleNameChange = (e) => {
         setName(e.target.value);
@@ -44,32 +45,36 @@ const PostTask = () => {
         e.preventDefault();
 
         const coords = await getCoords(location);
-
-        // TODO: need to validate postcode before posting registration
-        const newTask = {
-            "taskName": name,
-            "taskType": type,
-            "status": "posted",
-            "description": description,
-            "username": username,
-            "dateTime": new Date().toLocaleString(),
-            "location": {"coordinates": coords.coordinates},
-            "duration": duration,
-            "covidInfo": covidInfo,
-        }
-        
-        tasksService.postTask(newTask)
-            .then((data) => {
-                console.log(data["message"]);
-                e.target.reset();  // clear form
-            })
-            .catch(error => console.log(error));
+        if (coords){
+            // TODO: need to validate postcode before posting registration
+            const newTask = {
+                "taskName": name,
+                "taskType": type,
+                "status": "posted",
+                "description": description,
+                "username": username,
+                "dateTime": new Date().toLocaleString(),
+                "location": {"coordinates": coords.coordinates},
+                "duration": duration,
+                "covidInfo": covidInfo,
+            }
+            
+            tasksService.postTask(newTask)
+                .then((data) => {
+                    setResponseMsg(data["message"]);
+                    e.target.reset(); 
+                })
+                .catch(error => {console.log(error)
+                    setResponseMsg(error)
+                    });
+        } else {setResponseMsg('task not posted')}      
     }
     
     return (
         <div>
             <div className="flex flex-col px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
                 <div className="self-center text-gray-900 font-bold text-2xl">Create Task</div>
+                {responseMsg&&<p className="self-center text-green text-m">{responseMsg}</p>}
                     <div className="p-6 mt-6 gap-4 space-y-10 flex mb-2 relative">
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <input type="text" placeholder="Name" onChange={handleNameChange} className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" required />
