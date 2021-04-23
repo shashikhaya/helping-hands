@@ -76,6 +76,9 @@ function App() {
             <Route path="/task/:id">
               <TaskPage />
             </Route>
+            <Route>
+              
+            </Route>
           </Switch>
         </div>
         <Footer />
