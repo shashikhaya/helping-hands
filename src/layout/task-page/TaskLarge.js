@@ -9,12 +9,18 @@ import { useState, useEffect } from 'react'
 const TaskLarge = ({task}) => {
     const [taskStatus,setTaskStatus] = useState(task.status)
     const [buttonText,setButtonText] = useState()
+    // const [task,setTask] = useState()
 
     const account = JSON.parse(localStorage.getItem('account'));
     
     useEffect(()=>{
+        console.log(account.location.coordinates)
         getButtonText()
     }, [task.status, taskStatus,buttonText])
+
+    // useEffect(()=>{
+    //     setTask(task)
+    // },[])
 
     const getButtonText = () => {
         switch(task.status){
