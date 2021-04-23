@@ -74,10 +74,10 @@ const InnerContainer = styled.div`
 
 const backdropVariants = {
   expanded: {
-    width: "233%",
-    height: "1050px",
+    width: "500%",
+    height: "1500px",
     borderRadius: "20%",
-    transform: "rotate(60deg)",
+    transform: "rotate(65deg)",
   },
   collapsed: {
     width: "160%",
