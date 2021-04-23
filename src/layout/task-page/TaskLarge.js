@@ -14,7 +14,7 @@ const TaskLarge = ({task}) => {
     const account = JSON.parse(localStorage.getItem('account'));
     
     useEffect(()=>{
-        console.log(account.location.coordinates)
+        // console.log(account.location.coordinates)
         getButtonText()
     }, [task.status, taskStatus,buttonText])
 
