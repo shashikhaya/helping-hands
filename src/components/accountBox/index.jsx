@@ -9,7 +9,7 @@ import { CSSTransition } from "react-transition-group";
 import "./index.css";
 
 const BoxContainer = styled.div`
-  width: 280px;
+  width: 300px;
   min-height: 550px;
   display: flex;
   flex-direction: column;
