@@ -58,14 +58,13 @@ const postTask = (task) => {
         .then(handleResponse)
 };
 
-const putTaskStatus = () => {
+const updateTaskStatus = (newStatus,id) => {
     const requestOptions = {
         method: 'PUT',
-        headers: authHeader(),
-        body:{"status": "in-progress"}
+        headers:  { 'Content-Type': 'application/json', ...authHeader() },
+        body:JSON.stringify({"status": newStatus})
     };
-
-    return fetch(`${baseUrl}/tasks`, requestOptions)
+    return fetch(`${baseUrl}/tasks/${id}`, requestOptions)
         .then(handleResponse)
 };
 
@@ -73,5 +72,5 @@ export const tasksService = {
     getTasks,
     getTask,
     postTask,
-    putTaskStatus
+    updateTaskStatus
 };

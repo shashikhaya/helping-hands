@@ -71,12 +71,13 @@ export function SignupForm(props) {
     }
     userService.register(body)
 
+    setUsername('');
+    setPostcode('');
+    setContactInfo('');
+    setPassword('');
+    setConfirmPassword('');
+    setAccountType('');
 
-    userService.login(username, password)
-        .then(
-            user => history.push('/'),
-            error => console.log(error)
-        );
     
   }
 

@@ -33,10 +33,11 @@ export function LoginForm(props) {
 
     userService.login(username, password)
         .then(
-            user => history.push('/'),
+            (user) => {history.push('/')
+            props.onSubmit()},
             error => console.log(error)
         );
-    props.onSubmit();
+    
   }
 
   return (

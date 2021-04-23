@@ -16,7 +16,7 @@ import getCoords from './_helpers/getCoords'
 function App() {
   const [show, setShow] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-
+  
   useEffect(() => {
     if (!_.isEmpty(authHeader())) {
       setLoggedIn(true);

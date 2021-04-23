@@ -1,6 +1,21 @@
 import { Link } from 'react-router-dom';
+import { useEffect,useState } from 'react'
+import getPostcode from '../_helpers/getPostcode'
 
 const Task = (props) => {
+    const [location,setLocation] = useState()
+
+    useEffect(() => {
+        async function getLocation(){
+            let location= await getPostcode(props.location[1],props.location[0])
+            setLocation(location)      
+        }
+        getLocation()
+
+    }, []
+    )
+
+
     return (
         <div className="rounded border border-gray overflow-hidden p-4 mb-4">
             <div className="flex justify-between">
@@ -16,8 +31,8 @@ const Task = (props) => {
                     <p className="mt-2 text-base">
                         { props.description }
                     </p>
-                    <h1 className="mt-2 font-bold text-xl">
-                        { props.location }
+                    <h1 className="mt-2 font-bold text-s">
+                        { location }
                     </h1>
                     <p className="mt-2 text-lg">
                         { props.duration }
