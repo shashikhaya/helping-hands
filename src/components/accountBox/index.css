@@ -62,11 +62,11 @@
   }
 
   label + input[type=radio] + label {
-    border-left: solid px rgb(109,40,217);
+    border-left: solid 3px rgb(109,40,217);
   }
   
   .radio-group {
-    border: solid 5px rgb(109,40,217);
+    border: solid 3px rgb(109,40,217);
     display: inline-block;
     margin: 16.7px;
     border-radius: 10px;
