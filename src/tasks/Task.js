@@ -5,8 +5,6 @@ import getPostcode from '../_helpers/getPostcode'
 const Task = (props) => {
     const [location,setLocation] = useState()
 
-
-
     useEffect(() => {
         async function getLocation(){
             let location= await getPostcode(props.location[1],props.location[0])

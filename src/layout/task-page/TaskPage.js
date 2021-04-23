@@ -11,18 +11,16 @@ const TaskPage = () => {
     const [task, setTask]=useState({});
     const { id } = useParams()
     useEffect(() =>{
-        console.log(id)
+
         tasksService.getTask(id)
         .then(
             (task) => {
-                console.log(task.data);
                 setTask(task.data);
             },
             error => console.log(error)
         
         );
-    }, []);
-        //get the task json from db
+    },[]);
 
     return (
         <div  className="space-y-5" >
