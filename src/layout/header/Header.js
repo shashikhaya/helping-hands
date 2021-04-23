@@ -63,7 +63,7 @@ const Header = ({ handleLoginClick, handleLogoutClick, loggedIn }) => {
                                             Tasks
                                     </Link>
                                     {/* need to add the dashboard */}
-                                    <Link to={{ pathname: '/#'}} className="navlink">
+                                    <Link to={{ pathname: '/dashboard'}} className="navlink">
                                             Dashboard
                                     </Link>
                                     <Link to={{ pathname: '/'}} >

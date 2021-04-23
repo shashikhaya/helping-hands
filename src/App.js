@@ -7,7 +7,10 @@ import Footer from './layout/footer/Footer';
 import TaskList from './tasks/TaskList';
 import PostTask from './tasks/PostTask';
 import TaskPage from './layout/task-page/TaskPage';
+import Dashboard from './layout/body/Dashboard';
 import { AccountBox } from "./components/accountBox"
+
+
 import authHeader from './_helpers/authHeader'
 import { userService } from './_services';
 import getCoords from './_helpers/getCoords'
@@ -16,6 +19,8 @@ import getCoords from './_helpers/getCoords'
 function App() {
   const [show, setShow] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const account = JSON.parse(localStorage.getItem('account'));
   
   useEffect(() => {
     if (!_.isEmpty(authHeader())) {
@@ -76,8 +81,8 @@ function App() {
             <Route path="/task/:id">
               <TaskPage />
             </Route>
-            <Route>
-              
+            <Route path="/dashboard">
+              <Dashboard />
             </Route>
           </Switch>
         </div>
