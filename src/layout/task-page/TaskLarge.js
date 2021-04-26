@@ -82,8 +82,8 @@ const TaskLarge = ({task}) => {
                         <p className="mt-2 text-lg">{task.duration}</p>
                     </div>
                 </div>
-                {/* TODO: fix Map */}
-                {(Object.keys(task).length>0) && <Map userCoords={account.location.coordinates} taskCoords={task.location.coordinates} /> }
+                {/* To add the map, you must add an API key for google maps */}
+                {/* {(Object.keys(task).length>0) && <Map userCoords={account.location.coordinates} taskCoords={task.location.coordinates} /> } */}
                 {(account.role ==="helper" & task.status!=="completed") && <div><button className="btn btn-purple float-right" onClick={handleClick}>{buttonText}</button></div>}  
             </div>
         </div>            
