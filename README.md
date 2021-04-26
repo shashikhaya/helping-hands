@@ -1,3 +1,20 @@
+Helping Hands is a website designed for the front-end focused project of the Bright Newtork Technology Academy (BNTA).
+Collaborators: Shashi Parekh, Zainuddin Siddiqi, Matthew Baines & Sixian Chen
+
+The project is aimed to provide an intuitive, responsive website to connect vulnerable people who need help completing tasks such as going shopping or cleaning, with local vounteers willing to assist them.
+
+The project is built in React and utilises the backend "Express the support", built by a different team in the previous back-end focused project of the BNTA.
+
+"Express the support" uses express and mondoDB with mongoose and the repo can be found here: https://github.com/timstu98/ExpressTheSupport
+
+A few minor edits were made to the backend to integrate it with our front and this up-to-date version, required to run the app, can be found here: https://github.com/z-siddiqi/ExpressTheSupport
+
+To run Helping Hands, first run the express the support server using "npm start" in the servers directory, then use "npm start" in the helping hands directory.
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+THE FOLLOWING IS THE AUTO-GENERATED REACT DOCUMENTATION
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
