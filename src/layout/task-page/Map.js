@@ -14,7 +14,7 @@ const center = {
 function Map({userCoords,taskCoords}) {
   return (
     <LoadScript
-      googleMapsApiKey="AIzaSyDD9SFkGe-a_3ZltYX8xp7jC3B3jfqHeBo"
+      googleMapsApiKey="PUT IN A KEY"
     >
       <GoogleMap
         mapContainerStyle={containerStyle}
