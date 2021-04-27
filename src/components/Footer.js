@@ -1,4 +1,4 @@
-import LogoImg from './handshake.svg'
+import LogoImg from '../images/handshake.svg'
 
 const Footer = () => {
     return (

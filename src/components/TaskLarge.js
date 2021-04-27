@@ -1,6 +1,6 @@
 import Map from "./Map";
 
-import { tasksService } from '../../_services';
+import { tasksService } from '../_services';
 
 import { useState, useEffect } from 'react'
 

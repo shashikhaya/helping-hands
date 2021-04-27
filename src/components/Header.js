@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Button from './Button';
-import LogoImg from './handshake.svg'
+import LogoImg from '../images/handshake.svg'
 import {Link} from 'react-router-dom'
 
 const Header = ({ handleLoginClick, handleLogoutClick, loggedIn }) => {

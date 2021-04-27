@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import _ from 'lodash';
-import Header from './layout/header/Header';
-import LandingInfo from './layout/body/LandingInfo';
-import Footer from './layout/footer/Footer';
-import TaskList from './tasks/TaskList';
-import PostTask from './tasks/PostTask';
-import TaskPage from './layout/task-page/TaskPage';
-import Dashboard from './layout/body/Dashboard';
+import Header from './components/Header';
+import LandingInfo from './pages/LandingInfo';
+import Footer from './components/Footer';
+import TaskList from './components/TaskList';
+import PostTask from './components/PostTask';
+import TaskPage from './components/TaskPage';
+import Dashboard from './pages/Dashboard';
 import { AccountBox } from "./components/accountBox"
 
 

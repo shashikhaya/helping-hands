@@ -1,12 +1,12 @@
-import balloon from './balloon.svg';
-import coffee from './coffee.svg';
-import globe from './globe.svg';
-import health from './health.svg';
-import help from './help.svg';
-import love from './love.svg';
-import money from './money.svg';
-import FeatureInfo from './FeatureInfo';
-import RegistrationInfo from './RegistrationInfo';
+import balloon from '../images/balloon.svg';
+import coffee from '../images/coffee.svg';
+import globe from '../images/globe.svg';
+import health from '../images/health.svg';
+import help from '../images/help.svg';
+import love from '../images/love.svg';
+import money from '../images/money.svg';
+import FeatureInfo from '../components/FeatureInfo';
+import RegistrationInfo from '../components/RegistrationInfo';
 
 const LandingInfo = ({ handleClick }) => {
     return (

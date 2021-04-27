@@ -1,7 +1,7 @@
 import TaskLarge from './TaskLarge'
 import TaskSmall from './TaskSmall'
 
-import {tasksService} from '../../_services/tasks.service'
+import {tasksService} from '../_services/tasks.service'
 
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
