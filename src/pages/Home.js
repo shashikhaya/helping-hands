@@ -8,7 +8,7 @@ import money from '../images/money.svg';
 import FeatureInfo from '../components/FeatureInfo';
 import RegistrationInfo from '../components/RegistrationInfo';
 
-const LandingInfo = ({ handleClick }) => {
+const Home = ({ handleClick }) => {
     return (
         <>
             <div className="grid md:grid-cols-2 gap-4 mb-4">
@@ -80,4 +80,4 @@ const LandingInfo = ({ handleClick }) => {
     )
 }
 
-export default LandingInfo;
+export default Home;
