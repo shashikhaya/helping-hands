@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import getCoords from '../_helpers/getCoords'
 import { tasksService } from '../_services';
 
-const PostTask = () => {
+const TaskCreateForm = () => {
     const [name, setName] = useState('');
     const [type, setType] = useState('');
     const [description, setDescription] = useState('');
@@ -72,7 +72,7 @@ const PostTask = () => {
     
     return (
         <div>
-            <div className="flex flex-col px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
+            <div className="flex flex-col px-4 py-8 bg-white rounded-lg shadow sm:px-6 md:px-8 lg:px-10">
                 <div className="self-center text-gray-900 font-bold text-2xl">Create Task</div>
                 {responseMsg&&<p className="self-center text-green text-m">{responseMsg}</p>}
                     <div className="p-6 mt-6 gap-4 space-y-10 flex mb-2 relative">
@@ -95,4 +95,4 @@ const PostTask = () => {
     )
 }
 
-export default PostTask;
+export default TaskCreateForm;
