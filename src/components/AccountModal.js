@@ -16,11 +16,11 @@ const customStyles = {
   },
 };
 
-const AccountModal = ({ IsOpen, onClose, onLoginFormSubmit }) => {
+const AccountModal = ({ isOpen, onClose, onLoginFormSubmit }) => {
   const [active, setActive] = useState("login");
 
   return (
-    <Modal isOpen={IsOpen} onRequestClose={onClose} style={customStyles}>
+    <Modal isOpen={isOpen} onRequestClose={onClose} style={customStyles}>
       <div className="absolute right-4 top-4">
         <button
           className="bg-transparent border border-transparent"

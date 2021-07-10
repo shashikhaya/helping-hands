@@ -1,97 +1,62 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import _ from "lodash";
 import Header from "./components/Header";
-import LandingInfo from "./pages/LandingInfo";
+import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import TaskList from "./components/TaskList";
-import PostTask from "./components/PostTask";
-import TaskPage from "./components/TaskPage";
+import TaskCreateForm from "./components/TaskCreateForm";
 import Dashboard from "./pages/Dashboard";
-import { AccountBox } from "./components/accountBox";
+import AccountModal from "./components/AccountModal";
 
-import authHeader from "./_helpers/authHeader";
-import { userService } from "./_services";
-import getCoords from "./_helpers/getCoords";
+import { userService } from './_services';
+import { tasksService } from "./_services";
 
 function App() {
-  const [show, setShow] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    if (!_.isEmpty(authHeader())) {
-      setLoggedIn(true);
-    }
+    tasksService.getTasks()
+      .then(tasks => setTasks(tasks))
+      .catch(err => console.log(err));
   }, []);
 
-  const handleLoginClick = () => {
-    setShow(!show);
+  const openModal = () => {
+    setIsOpen(true);
   };
 
-  const handleLogin = () => {
-    setLoggedIn(true);
-    setShow(!show);
+  const closeModal = () => {
+    setIsOpen(false);
   };
 
-  const handleLogoutClick = () => {
-    userService.logout();
-    setLoggedIn(false);
-  };
-
-  const postTask = async (task) => {
-    // // get username
-    const user = "get username";
-    // convert location into coordinates
-    const location_data = await getCoords(task.location);
-    // get the dateTime
-    const today = new Date();
-    const date =
-      today.getDate() +
-      "-" +
-      (today.getMonth() + 1) +
-      "-" +
-      today.getFullYear();
-
-    const fullTask = {
-      ...task,
-      status: "posted",
-      username: user,
-      location: {
-        type: location_data.type,
-        coordinates: location_data.coordinates,
-      },
-      dateTime: date,
-    };
-    // TODO: post the fullTask as the body to the API
-    console.log(fullTask);
+  const handleLoginFormSubmit = (username, password) => {
+    userService.login(username, password)
+      .then(user => {
+        setLoggedIn(true);
+        setIsOpen(!isOpen);
+      })
+      .catch(error => console.log(error))
   };
 
   return (
     <Router>
       <div className="flex flex-col h-screen">
         <Header
-          handleLoginClick={handleLoginClick}
-          handleLogoutClick={handleLogoutClick}
+          onAccountClick={openModal}
           loggedIn={loggedIn}
         />
-        <AccountBox
-          onClose={() => setShow(false)}
-          onLoginSubmit={handleLogin}
-          show={show}
-        />
+        <AccountModal isOpen={isOpen} onClose={closeModal} onLoginFormSubmit={handleLoginFormSubmit} />
         <div className="container mx-auto mb-auto px-8">
           <Switch>
             <Route exact path="/">
-              <LandingInfo handleClick={handleLoginClick} />
+              <Home onAccountClick={openModal} />
             </Route>
             <Route exact path="/tasks">
-              <TaskList />
+              <TaskList tasks={tasks}/>
             </Route>
-            <Route exact path="/tasks/post">
-              <PostTask onPost={postTask} />
-            </Route>
-            <Route path="/task/:id">
-              <TaskPage />
+            <Route exact path="/tasks/new">
+              <TaskCreateForm />
             </Route>
             <Route path="/dashboard">
               <Dashboard />

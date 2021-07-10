@@ -6,7 +6,7 @@ const TaskList = ({ tasks }) => {
     <>
       <div className="flex">
         <Link
-          to={{ pathname: "/tasks/post" }}
+          to={{ pathname: "/tasks/new" }}
           className="btn btn-gray text-center w-full"
         >
           +
