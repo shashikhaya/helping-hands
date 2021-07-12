@@ -8,7 +8,7 @@ import TaskCreateForm from "./components/TaskCreateForm";
 import Dashboard from "./pages/Dashboard";
 import AccountModal from "./components/AccountModal";
 
-import { userService } from './_services';
+import { userService } from "./_services";
 import { tasksService } from "./_services";
 
 function App() {
@@ -18,8 +18,8 @@ function App() {
 
   useEffect(() => {
     tasksService.getTasks()
-      .then(tasks => setTasks(tasks))
-      .catch(err => console.log(err));
+      .then((tasks) => setTasks(tasks))
+      .catch((err) => console.log(err));
   }, []);
 
   const openModal = () => {
@@ -32,28 +32,46 @@ function App() {
 
   const handleLoginFormSubmit = (username, password) => {
     userService.login(username, password)
-      .then(user => {
+      .then((user) => {
         setLoggedIn(true);
         setIsOpen(!isOpen);
       })
-      .catch(error => console.log(error))
+      .catch((error) => console.log(error));
+  };
+
+  const handleTaskStatusUpdate = (taskId, newStatus) => {
+    tasksService.updateTaskStatus(taskId, newStatus)
+      .then(updatedTask => {
+        const nextTasks = tasks.map((task) => {
+          if (task._id === taskId) {
+            return Object.assign({}, task, {
+              status: updatedTask.data.status,
+            });
+          } else {
+            return task;
+          }
+        });
+        setTasks(nextTasks);
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
     <Router>
       <div className="flex flex-col h-screen">
-        <Header
-          onAccountClick={openModal}
-          loggedIn={loggedIn}
+        <Header onAccountClick={openModal} loggedIn={loggedIn} />
+        <AccountModal
+          isOpen={isOpen}
+          onClose={closeModal}
+          onLoginFormSubmit={handleLoginFormSubmit}
         />
-        <AccountModal isOpen={isOpen} onClose={closeModal} onLoginFormSubmit={handleLoginFormSubmit} />
         <div className="container mx-auto mb-auto px-8">
           <Switch>
             <Route exact path="/">
               <Home onAccountClick={openModal} />
             </Route>
             <Route exact path="/tasks">
-              <TaskList tasks={tasks}/>
+              <TaskList tasks={tasks} onTaskStatusUpdate={handleTaskStatusUpdate} />
             </Route>
             <Route exact path="/tasks/new">
               <TaskCreateForm />
