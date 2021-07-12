@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useAlert } from "react-alert";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
@@ -15,6 +16,7 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const alert = useAlert();
 
   useEffect(() => {
     tasksService.getTasks()
@@ -53,7 +55,7 @@ function App() {
         });
         setTasks(nextTasks);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => alert.show(error.message));
   };
 
   return (
