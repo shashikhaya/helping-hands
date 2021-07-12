@@ -1,4 +1,4 @@
-const RegistrationForm = ({ handleClick, title, text, buttonText, statement1, statement2, statement3, statement4, statement5 }) => {
+const RegistrationInfo = ({ handleClick, title, text, buttonText, statement1, statement2, statement3, statement4, statement5 }) => {
     return (
         <div className="p-4">
             <p className="text-gray-800 text-xl font-medium mb-4">
@@ -51,4 +51,4 @@ const RegistrationForm = ({ handleClick, title, text, buttonText, statement1, st
     )
 }
 
-export default RegistrationForm;
+export default RegistrationInfo;
