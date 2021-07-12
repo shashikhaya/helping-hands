@@ -41,9 +41,18 @@ function App() {
       .catch((error) => console.log(error));
   };
 
+  const handleTaskCreateFormSubmit = (newTask) => {
+    tasksService.createTask(newTask)
+      .then((createdTask) => {
+        const nextTasks = [...tasks, createdTask.data]
+        setTasks(nextTasks);
+      })
+      .catch((error) => alert.show(error.message));
+  };
+
   const handleTaskStatusUpdate = (taskId, newStatus) => {
     tasksService.updateTaskStatus(taskId, newStatus)
-      .then(updatedTask => {
+      .then((updatedTask) => {
         const nextTasks = tasks.map((task) => {
           if (task._id === taskId) {
             return Object.assign({}, task, {
@@ -73,10 +82,13 @@ function App() {
               <Home onAccountClick={openModal} />
             </Route>
             <Route exact path="/tasks">
-              <TaskList tasks={tasks} onTaskStatusUpdate={handleTaskStatusUpdate} />
+              <TaskList
+                tasks={tasks}
+                onTaskStatusUpdate={handleTaskStatusUpdate}
+              />
             </Route>
             <Route exact path="/tasks/new">
-              <TaskCreateForm />
+              <TaskCreateForm onTaskCreateFormSubmit={handleTaskCreateFormSubmit} />
             </Route>
             <Route path="/dashboard">
               <Dashboard />
