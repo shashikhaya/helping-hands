@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import getCoords from "../_helpers/getCoords";
+import { getCoords } from "../helpers";
 
 const TaskCreateForm = ({ onTaskCreateFormSubmit }) => {
   const [errors, setErrors] = useState({});
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
-  const [location, setLocation] = useState("");
+  const [postcode, setPostcode] = useState("");
   const [coords, setCoords] = useState([]);
   const [duration, setDuration] = useState("");
   const [covidInfo, setCovidInfo] = useState("");
@@ -26,8 +26,8 @@ const TaskCreateForm = ({ onTaskCreateFormSubmit }) => {
     setDescription(e.target.value);
   };
 
-  const handleLocationChange = (e) => {
-    setLocation(e.target.value);
+  const handlePostcodeChange = (e) => {
+    setPostcode(e.target.value);
   };
 
   const handleDurationChange = (e) => {
@@ -46,11 +46,11 @@ const TaskCreateForm = ({ onTaskCreateFormSubmit }) => {
     getCoords(e.target.value)
       .then((coordinates) => {
         setCoords(coordinates);
-        setErrors(Object.assign({}, errors, { location: "" }));
+        setErrors(Object.assign({}, errors, { postcode: "" }));
       })
       .catch((error) => {
         setCoords([]);
-        setErrors(Object.assign({}, errors, { location: error.message }));
+        setErrors(Object.assign({}, errors, { postcode: error.message }));
       });
   };
 
@@ -99,14 +99,16 @@ const TaskCreateForm = ({ onTaskCreateFormSubmit }) => {
             />
             <input
               type="text"
-              placeholder="Location (Postcode)"
-              onChange={handleLocationChange}
+              placeholder="Postcode"
+              onChange={handlePostcodeChange}
               className="mb-4 rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               onBlur={validatePostcode}
               required
             />
-            {errors.location && (
-              <p className="-mt-3 mb-4 text-red-500"><strong>{errors.location}</strong></p>
+            {errors.postcode && (
+              <p className="-mt-3 mb-4 text-red-500">
+                <strong>{errors.postcode}</strong>
+              </p>
             )}
             <input
               type="text"
