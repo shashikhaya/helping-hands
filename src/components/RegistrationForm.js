@@ -1,13 +1,80 @@
-import React from "react";
+import React, { useState } from "react";
+import { getCoords } from "../helpers";
 
-const RegistrationForm = ({ onLoginClick }) => {
+const RegistrationForm = ({ onLoginClick, onFormSubmit }) => {
+  const [errors, setErrors] = useState({});
+  const [role, setRole] = useState("user");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [postcode, setPostcode] = useState("");
+  const [coords, setCoords] = useState([]);
+  const [password, setPassword] = useState("");
+
+  const handleRoleChange = (e) => {
+    setRole(e.target.value);
+  };
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePostcodeChange = (e) => {
+    setPostcode(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const validatePostcode = (e) => {
+    getCoords(e.target.value)
+      .then((coordinates) => {
+        setCoords(coordinates);
+        setErrors(Object.assign({}, errors, { postcode: "" }));
+      })
+      .catch((error) => {
+        setCoords([]);
+        setErrors(Object.assign({}, errors, { postcode: error.message }));
+      });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onFormSubmit(role, username, email, coords, password);
+  };
+
   return (
     <div className="flex flex-col w-full max-w-md px-4 py-8 bg-white sm:px-6 md:px-8 lg:px-10">
-      <div className="self-center mb-6 text-xl font-light text-gray-600 sm:text-2xl">
+      <div className="self-center text-xl font-light text-gray-600 sm:text-2xl">
         Register
       </div>
       <div className="mt-8">
-        <form>
+        <form onSubmit={handleSubmit}>
+          <div className="flex flex-col mb-4">
+            <div className="flex justify-center mt-2">
+              <input
+                type="radio"
+                name="role"
+                value="user"
+                checked={role === "user"}
+                onChange={handleRoleChange}
+              />
+              <span className="ml-2">user</span>
+              <input
+                type="radio"
+                className="ml-4"
+                name="role"
+                value="helper"
+                checked={role === "helper"}
+                onChange={handleRoleChange}
+              />
+              <span className="ml-2">helper</span>
+            </div>
+          </div>
           <div className="flex flex-col mb-2">
             <div className="flex relative">
               <span className="rounded-l-md inline-flex items-center px-3 border-t bg-white border-l border-b border-gray-300 text-gray-500 shadow-sm text-sm">
@@ -30,6 +97,7 @@ const RegistrationForm = ({ onLoginClick }) => {
                 type="text"
                 className="rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                 placeholder="username"
+                onChange={handleUsernameChange}
               />
             </div>
           </div>
@@ -55,10 +123,16 @@ const RegistrationForm = ({ onLoginClick }) => {
                 type="email"
                 className="rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                 placeholder="email"
+                onChange={handleEmailChange}
               />
             </div>
           </div>
           <div className="flex flex-col mb-2">
+            {errors.postcode && (
+              <p className="mb-2 text-red-500">
+                <strong>{errors.postcode}</strong>
+              </p>
+            )}
             <div className="flex relative">
               <span className="rounded-l-md inline-flex items-center px-3 border-t bg-white border-l border-b border-gray-300 text-gray-500 shadow-sm text-sm">
                 <svg
@@ -86,31 +160,8 @@ const RegistrationForm = ({ onLoginClick }) => {
                 type="text"
                 className="rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                 placeholder="postcode"
-              />
-            </div>
-          </div>
-          <div className="flex flex-col mb-2">
-            <div className="flex relative">
-              <span className="rounded-l-md inline-flex items-center px-3 border-t bg-white border-l border-b border-gray-300 text-gray-500 shadow-sm text-sm">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                  />
-                </svg>
-              </span>
-              <input
-                type="password"
-                className="rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                placeholder="password"
+                onChange={handlePostcodeChange}
+                onBlur={validatePostcode}
               />
             </div>
           </div>
@@ -135,7 +186,8 @@ const RegistrationForm = ({ onLoginClick }) => {
               <input
                 type="password"
                 className="rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                placeholder="confirm password"
+                placeholder="password"
+                onChange={handlePasswordChange}
               />
             </div>
           </div>
