@@ -16,7 +16,7 @@ const customStyles = {
   },
 };
 
-const AccountModal = ({ isOpen, onClose, onLoginFormSubmit }) => {
+const AccountModal = ({ isOpen, onClose, onLoginFormSubmit, onRegisterFormSubmit }) => {
   const [active, setActive] = useState("login");
 
   return (
@@ -53,6 +53,7 @@ const AccountModal = ({ isOpen, onClose, onLoginFormSubmit }) => {
         <RegistrationForm
           onLoginClick={() => setActive("login")}
           onClose={onClose}
+          onFormSubmit={onRegisterFormSubmit}
         />
       )}
     </Modal>

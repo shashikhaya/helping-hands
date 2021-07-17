@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-const LoginForm = ({ onRegisterClick, onClose, onFormSubmit }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const LoginForm = ({ onRegisterClick, onFormSubmit }) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -15,11 +15,11 @@ const LoginForm = ({ onRegisterClick, onClose, onFormSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onFormSubmit(username, password);
-  }
+  };
 
   return (
     <div className="flex flex-col w-full max-w-md px-4 py-8 bg-white sm:px-6 md:px-8 lg:px-10">
-      <div className="self-center mb-6 text-xl font-light text-gray-600 sm:text-2xl">
+      <div className="self-center text-xl font-light text-gray-600 sm:text-2xl">
         Login
       </div>
       <div className="mt-8">

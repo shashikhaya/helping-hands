@@ -8,11 +8,10 @@ import TaskList from "./components/TaskList";
 import TaskCreateForm from "./components/TaskCreateForm";
 import Dashboard from "./pages/Dashboard";
 import AccountModal from "./components/AccountModal";
+import * as userService from "./services/userService";
+import * as tasksService from "./services/tasksService";
 
-import { userService } from "./_services";
-import { tasksService } from "./_services";
-
-function App() {
+const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [tasks, setTasks] = useState([]);
@@ -21,7 +20,7 @@ function App() {
   useEffect(() => {
     tasksService.getTasks()
       .then((tasks) => setTasks(tasks))
-      .catch((err) => console.log(err));
+      .catch((error) => console.log(error));
   }, []);
 
   const openModal = () => {
@@ -34,17 +33,30 @@ function App() {
 
   const handleLoginFormSubmit = (username, password) => {
     userService.login(username, password)
-      .then((user) => {
+      .then((data) => {
+        localStorage.setItem("token", JSON.stringify(data["accessToken"]));
+        localStorage.setItem("account", JSON.stringify(data["account"]));
         setLoggedIn(true);
         setIsOpen(!isOpen);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => alert.show(error.message));
+  };
+
+  const handleRegisterFormSubmit = (role, username, email, coords, password) => {
+    userService.register(role, username, email, coords, password)
+      .then((data) => alert.show(data["message"]))
+      .catch((error) => alert.show(error.message));
+  };
+
+  const handleLogoutClick = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("account");
   };
 
   const handleTaskCreateFormSubmit = (newTask) => {
     tasksService.createTask(newTask)
       .then((createdTask) => {
-        const nextTasks = [...tasks, createdTask.data]
+        const nextTasks = [...tasks, createdTask.data];
         setTasks(nextTasks);
       })
       .catch((error) => alert.show(error.message));
@@ -75,6 +87,7 @@ function App() {
           isOpen={isOpen}
           onClose={closeModal}
           onLoginFormSubmit={handleLoginFormSubmit}
+          onRegisterFormSubmit={handleRegisterFormSubmit}
         />
         <div className="container mx-auto mb-auto px-8">
           <Switch>
@@ -99,6 +112,6 @@ function App() {
       </div>
     </Router>
   );
-}
+};
 
 export default App;
