@@ -1,85 +1,119 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import _ from 'lodash';
-import Header from './layout/header/Header';
-import LandingInfo from './layout/body/LandingInfo';
-import Footer from './layout/footer/Footer';
-import TaskList from './tasks/TaskList';
-import PostTask from './tasks/PostTask';
-import TaskPage from './layout/task-page/TaskPage';
-import Dashboard from './layout/body/Dashboard';
-import { AccountBox } from "./components/accountBox"
+import { useAlert } from "react-alert";
+import Header from "./components/Header";
+import Home from "./pages/Home";
+import Footer from "./components/Footer";
+import TaskList from "./components/TaskList";
+import TaskCreateForm from "./components/TaskCreateForm";
+import Dashboard from "./pages/Dashboard";
+import AccountModal from "./components/AccountModal";
+import * as userService from "./services/userService";
+import * as tasksService from "./services/tasksService";
 
-
-import authHeader from './_helpers/authHeader'
-import { userService } from './_services';
-import getCoords from './_helpers/getCoords'
-
-
-function App() {
-  const [show, setShow] = useState(false);
+const App = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [tasks, setTasks] = useState([]);
+  const alert = useAlert();
 
-  const account = JSON.parse(localStorage.getItem('account'));
-  
   useEffect(() => {
-    if (!_.isEmpty(authHeader())) {
+    if (localStorage.getItem("token") !== null) {
       setLoggedIn(true);
     }
-  }, [])
+  }, []);
 
-  const handleLoginClick = () => {
-    setShow(!show);
-  }
+  useEffect(() => {
+    tasksService.getTasks()
+      .then((tasks) => setTasks(tasks))
+      .catch((error) => console.log(error));
+  }, [loggedIn]);
 
-  const handleLogin = () => {
-    setLoggedIn(true);
-    setShow(!show);
-  }
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const handleLoginFormSubmit = (username, password) => {
+    userService.login(username, password)
+      .then((data) => {
+        localStorage.setItem("token", JSON.stringify(data["accessToken"]));
+        localStorage.setItem("account", JSON.stringify(data["account"]));
+        setLoggedIn(true);
+        closeModal();
+      })
+      .catch((error) => alert.show(error.message));
+  };
+
+  const handleRegisterFormSubmit = (role, username, email, coords, password) => {
+    userService.register(role, username, email, coords, password)
+      .then((data) => alert.show(data["message"]))
+      .catch((error) => alert.show(error.message));
+  };
 
   const handleLogoutClick = () => {
-    userService.logout();
+    localStorage.removeItem("token");
+    localStorage.removeItem("account");
+    setTasks([]);
     setLoggedIn(false);
-  }
+  };
 
-  const postTask = async (task) => {
-    // // get username
-    const user = 'get username'
-    // convert location into coordinates
-    const location_data = await getCoords(task.location)
-    // get the dateTime
-    const today = new Date();
-    const date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+  const handleTaskCreateFormSubmit = (newTask) => {
+    tasksService.createTask(newTask)
+      .then((createdTask) => {
+        const nextTasks = [...tasks, createdTask.data];
+        setTasks(nextTasks);
+      })
+      .catch((error) => alert.show(error.message));
+  };
 
-    const fullTask = {...task,
-                      status:'posted', 
-                      username:user,
-                      location:{type:location_data.type,
-                                coordinates:location_data.coordinates},
-                      dateTime:date,
-                    }
-    // TODO: post the fullTask as the body to the API
-    console.log(fullTask)
-  }
-  
+  const handleTaskStatusUpdate = (taskId, newStatus) => {
+    tasksService.updateTaskStatus(taskId, newStatus)
+      .then((updatedTask) => {
+        const nextTasks = tasks.map((task) => {
+          if (task._id === taskId) {
+            return Object.assign({}, task, {
+              status: updatedTask.data.status,
+            });
+          } else {
+            return task;
+          }
+        });
+        setTasks(nextTasks);
+      })
+      .catch((error) => alert.show(error.message));
+  };
+
   return (
     <Router>
       <div className="flex flex-col h-screen">
-        <Header handleLoginClick={handleLoginClick} handleLogoutClick={handleLogoutClick} loggedIn={loggedIn} />
-        <AccountBox onClose={() => setShow(false)} onLoginSubmit={handleLogin} show={show} />
+        <Header
+          onAccountClick={openModal}
+          onLogoutClick={handleLogoutClick}
+          loggedIn={loggedIn}
+        />
+        <AccountModal
+          isOpen={isOpen}
+          onClose={closeModal}
+          onLoginFormSubmit={handleLoginFormSubmit}
+          onRegisterFormSubmit={handleRegisterFormSubmit}
+        />
         <div className="container mx-auto mb-auto px-8">
           <Switch>
             <Route exact path="/">
-              <LandingInfo handleClick={handleLoginClick}/>
+              <Home onAccountClick={openModal} />
             </Route>
             <Route exact path="/tasks">
-              <TaskList />
+              <TaskList
+                tasks={tasks}
+                onTaskStatusUpdate={handleTaskStatusUpdate}
+              />
             </Route>
-            <Route exact path="/tasks/post">
-              <PostTask onPost={postTask} />
-            </Route>
-            <Route path="/task/:id">
-              <TaskPage />
+            <Route exact path="/tasks/new">
+              <TaskCreateForm onTaskCreateFormSubmit={handleTaskCreateFormSubmit} />
             </Route>
             <Route path="/dashboard">
               <Dashboard />
@@ -90,7 +124,6 @@ function App() {
       </div>
     </Router>
   );
-}
+};
 
 export default App;
-
