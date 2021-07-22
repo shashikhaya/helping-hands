@@ -20,7 +20,7 @@ const AccountModal = ({ isOpen, onClose, onLoginFormSubmit, onRegisterFormSubmit
   const [active, setActive] = useState("login");
 
   return (
-    <Modal isOpen={isOpen} onRequestClose={onClose} style={customStyles}>
+    <Modal isOpen={isOpen} onRequestClose={onClose} style={customStyles} closeTimeoutMS={500}>
       <div className="absolute right-4 top-4">
         <button
           className="bg-transparent border border-transparent"
