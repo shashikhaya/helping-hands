@@ -2,39 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 @layer components {
-    .navbar {
-        @apply flex flex-row justify-between items-center w-full py-4 px-8 mb-7;
-    }
+  .navbar {
+    @apply flex flex-row justify-between items-center w-full py-4 px-8 mb-7;
+  }
 
-    .navbar-brand {
-        @apply text-xl no-underline font-bold;
-    }
+  .navbar-brand {
+    @apply text-xl no-underline font-bold;
+  }
 
-    .navlink {
-        @apply text-gray-300  hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium;
-    }
+  .navlink {
+    @apply text-gray-300  hover:text-gray-800 px-3 py-2 rounded-md text-base font-medium;
+  }
 
-    .btn {
-        @apply my-4 py-2 px-3 font-semibold shadow rounded focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
-    }
+  .btn {
+    @apply my-4 py-2 px-3 font-semibold shadow rounded focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
+  }
 
-    .btn-purple {
-        @apply text-white bg-purple-700 hover:bg-purple-400;
-    }
+  .btn-purple {
+    @apply text-white bg-purple-700 hover:bg-purple-400;
+  }
 
-    .btn-red {
-        @apply text-white bg-red-700 hover:bg-red-400;
-    }
+  .btn-red {
+    @apply text-white bg-red-700 hover:bg-red-400;
+  }
 
-    .btn-gray {
-        @apply text-white bg-gray-600 hover:bg-gray-400;
-    }
+  .btn-gray {
+    @apply text-white bg-gray-600 hover:bg-gray-400;
+  }
 
-    .map-container {
-        height: 400px;
-        border-radius: 0.25rem;
-        width: 100%;
-        height: 0;
-        padding-bottom: 100%;
-    }
+  .map-container {
+    height: 400px;
+    border-radius: 0.25rem;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+  }
 }
