@@ -18,10 +18,16 @@ const App = () => {
   const alert = useAlert();
 
   useEffect(() => {
+    if (localStorage.getItem("token") !== null) {
+      setLoggedIn(true);
+    }
+  }, []);
+
+  useEffect(() => {
     tasksService.getTasks()
       .then((tasks) => setTasks(tasks))
       .catch((error) => console.log(error));
-  }, []);
+  }, [loggedIn]);
 
   const openModal = () => {
     setIsOpen(true);
@@ -37,7 +43,7 @@ const App = () => {
         localStorage.setItem("token", JSON.stringify(data["accessToken"]));
         localStorage.setItem("account", JSON.stringify(data["account"]));
         setLoggedIn(true);
-        setIsOpen(!isOpen);
+        closeModal();
       })
       .catch((error) => alert.show(error.message));
   };
@@ -51,6 +57,8 @@ const App = () => {
   const handleLogoutClick = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("account");
+    setTasks([]);
+    setLoggedIn(false);
   };
 
   const handleTaskCreateFormSubmit = (newTask) => {
@@ -82,7 +90,11 @@ const App = () => {
   return (
     <Router>
       <div className="flex flex-col h-screen">
-        <Header onAccountClick={openModal} loggedIn={loggedIn} />
+        <Header
+          onAccountClick={openModal}
+          onLogoutClick={handleLogoutClick}
+          loggedIn={loggedIn}
+        />
         <AccountModal
           isOpen={isOpen}
           onClose={closeModal}
