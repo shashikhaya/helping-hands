@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import getPostcode from "../_helpers/getPostcode";
+import Map from "./Map";
+import { getPostcode } from "../helpers";
 
 const Task = ({ task, onTaskStatusUpdate }) => {
   const [location, setLocation] = useState();
+  const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
     async function getLocation() {
@@ -14,6 +16,10 @@ const Task = ({ task, onTaskStatusUpdate }) => {
     }
     getLocation();
   }, [task.location.coordinates]);
+
+  const handleExpandClick = () => {
+    setCollapsed(!collapsed);
+  };
 
   const handleStatusUpdate = () => {
     const newStatus = task.status === "posted" ? "in-progress" : "completed";
@@ -35,6 +41,7 @@ const Task = ({ task, onTaskStatusUpdate }) => {
         <div>
           <p className="mt-2 font-bold text-gray-400 text-xl">{task.status}</p>
           <p className="mt-2 font-bold text-xl">{task.covidInfo}</p>
+          <button onClick={handleExpandClick}>Expand</button>
           {task.status !== "completed" && (
             <div>
               <button
@@ -47,6 +54,12 @@ const Task = ({ task, onTaskStatusUpdate }) => {
           )}
         </div>
       </div>
+      {collapsed && (
+        <Map
+          longitude={task.location.coordinates[1]}
+          latitude={task.location.coordinates[0]}
+        />
+      )}
     </div>
   );
 };
